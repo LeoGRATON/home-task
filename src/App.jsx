@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { TaskList } from './components/TaskList';
-import { TaskForm } from './components/TaskForm';
-import { useTasks } from './hooks/useTasks';
-import './styles/App.css';
+import { useState } from "react";
+import { TaskForm } from "./components/TaskForm";
+import { TaskList } from "./components/TaskList";
+import { useTasks } from "./hooks/useTasks";
+import "./styles/App.css";
 
 function App() {
   const [showForm, setShowForm] = useState(false);
@@ -13,20 +13,22 @@ function App() {
     setShowForm(false);
   };
 
-  const completedCount = tasks.filter(t => t.completed).length;
+  const completedCount = tasks.filter((t) => t.completed).length;
   const totalCount = tasks.length;
 
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🏠 Home Task</h1>
+        <h1>Home Task</h1>
         <p className="subtitle">Gestionnaire de tâches ménagères récurrentes</p>
         {totalCount > 0 && (
           <div className="progress">
-            <span>{completedCount} / {totalCount} tâches complétées</span>
+            <span>
+              {completedCount} / {totalCount} tâches complétées
+            </span>
             <div className="progress-bar">
-              <div 
-                className="progress-fill" 
+              <div
+                className="progress-fill"
                 style={{ width: `${(completedCount / totalCount) * 100}%` }}
               />
             </div>
@@ -37,14 +39,11 @@ function App() {
       <main className="app-main">
         <div className="add-task-section">
           {!showForm ? (
-            <button 
-              onClick={() => setShowForm(true)} 
-              className="btn btn-add"
-            >
-              ➕ Ajouter une tâche
+            <button onClick={() => setShowForm(true)} className="btn btn-add">
+              Ajouter une tâche
             </button>
           ) : (
-            <TaskForm 
+            <TaskForm
               onSubmit={handleAddTask}
               onCancel={() => setShowForm(false)}
             />
